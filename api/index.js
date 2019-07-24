@@ -65,6 +65,7 @@ app.get('/playlists/:token/video/:video_ref/delete', function(req, res) {
     let preview = req.query.preview;
 
     let datos = {
+        "details": "videos a eliminar",
         "count": 1,
         "videos": [
             {'video_ref': video_ref}
