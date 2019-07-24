@@ -64,8 +64,15 @@ app.get('/playlists/:token/video/:video_ref/delete', function(req, res) {
     let video_ref = req.params.video_ref;
     let preview = req.query.preview;
 
+    let datos = {
+        "count": 1,
+        "videos": [
+            {'video_ref': video_ref}
+        ]
+    }
+
     if(preview){
-        res.send("<h1>Preview</h1>");
+        res.send(datos);
     }else {
         request({
             url: "https://www.streamingvideoprovider.com/?l=api&a=svp_delete_video&token=" + token + "&video_ref=" + video_ref,
