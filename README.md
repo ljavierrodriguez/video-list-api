@@ -1,2 +1,2 @@
-# Streaming Video Provider
+# Streaming Video Provider :: Delete Videos From Playlist
 
