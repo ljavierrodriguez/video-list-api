@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.get('/:token', function(req, res){
-    res.send("<h1>Hola Mundo</h1>" + req.params.token + req.query.token)
+app.get('/', function(req, res){
+    res.send("<h1>Hola Mundo</h1>");
 });
 
 app.get('/playlists/:token', function(req, res) {
