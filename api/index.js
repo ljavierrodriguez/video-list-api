@@ -48,7 +48,12 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
         if (!error && response.statusCode === 200) {
             // Pintamos la respuesta JSON en navegador.
             parser.parseString(body, function(error, result) {
+
                 if(error === null) {
+                    console.log(result.video_list.map(video => {
+                        return video.date_created;
+                    }));
+
                     res.send(result)
                 }
                 else {
