@@ -55,11 +55,8 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
                         let d1 = new Date(parseInt(vid.date_created)*1000);
                         let d2 = new Date();
                         let total = d2.getTime() - d1.getTime();
-                        console.log(total);
                         let days_created = Math.floor(total / created);
-                        console.log(days_created);
                         let days = (req.query.days ? parseInt(req.query.days) : 1)
-                        console.log((days_created >= days ? "true" : "false"));
                         return (parseInt(days_created) >= parseInt(days));
                     });
 
