@@ -42,7 +42,7 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
 
     request({
         url: "https://www.streamingvideoprovider.com/?l=api&a=svp_list_videos&token="+token+"&channel_ref="+channel_ref,
-        json: false
+        json: true
     }, function (error, response, body) {
 
         if (!error && response.statusCode === 200) {
