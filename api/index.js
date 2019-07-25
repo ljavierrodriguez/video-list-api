@@ -48,17 +48,22 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
         if (!error && response.statusCode === 200) {
             // Pintamos la respuesta JSON en navegador.
             parser.parseString(body, function(error, result) {
-
                 if(error === null) {
                     let created = 1000*60*60*24;
-                    let prueba = result.response.video_list.video.filter((video) => {
-                        let d1 = new Date(parseInt(video.date_created)*1000);
-                        let d2 = new Date();
-                        let total = d2.getTime() - d1.getTime();
-                        return Math.floor(total / created) > (req.query.days ? req.query.days : 1);
+                    let prueba = result.response.video_list.filter((video) => {
+
+                        let videos = video.video.filter((vid) => {
+                            console.log(vid);
+                            let d1 = new Date(parseInt(vid.date_created)*1000);
+                            let d2 = new Date();
+                            let total = d2.getTime() - d1.getTime();
+                            return Math.floor(total / created) > (req.query.days ? req.query.days : 1);
+                        });
+                        return videos;
+
                     });
-                    result.response.prueba = prueba;
-                    result.response.days = created;
+                    result.response.todelete = prueba;
+                    result.response.days = (req.query.days ? req.query.days : 1);
                     res.send(result);
                 }
                 else {
