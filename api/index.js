@@ -50,9 +50,10 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
             parser.parseString(body, function(error, result) {
 
                 if(error === null) {
-                    let prueba = result.response.video_list;
-                    result.response.prueba.videos = prueba;
-                    result.response.prueba.total = prueba.length;
+                    let prueba = result.response.video_list.map((video) => {
+                        return video;
+                    });
+                    result.response.prueba = prueba;
                     res.send(result);
                 }
                 else {
