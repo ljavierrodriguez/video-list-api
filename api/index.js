@@ -50,12 +50,6 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
             parser.parseString(body, function(error, result) {
 
                 if(error === null) {
-                    let prueba = result.video_list.map(video => {
-                        return video.date_created;
-                    });
-
-                    console.log(prueba);
-
                     res.send(result)
                 }
                 else {
