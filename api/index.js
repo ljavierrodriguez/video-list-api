@@ -54,7 +54,7 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
                         return video.date_created;
                     });
 
-                    console.log(prueba);
+                    result.response.prueba = prueba;
                     res.send(result)
                 }
                 else {
