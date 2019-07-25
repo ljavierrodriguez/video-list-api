@@ -39,6 +39,7 @@ app.get('/playlists/:token', function(req, res) {
 app.get('/playlists/:token/:channel_ref', function(req, res) {
     let token = req.params.token;
     let channel_ref = req.params.channel_ref
+    let days = (req.query.days ? req.query.days : 1);
 
     request({
         url: "https://www.streamingvideoprovider.com/?l=api&a=svp_list_videos&token="+token+"&channel_ref="+channel_ref,
@@ -50,8 +51,9 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
             parser.parseString(body, function(error, result) {
 
                 if(error === null) {
+                    let created = 1000*60*60*24*days;
                     let prueba = result.response.video_list.filter((video) => {
-                        return video.date_created > 10368000000;
+                        return video.date_created > created;
                     });
                     result.response.prueba = prueba;
                     res.send(result);
