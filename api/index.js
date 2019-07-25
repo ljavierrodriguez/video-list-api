@@ -50,10 +50,9 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
             parser.parseString(body, function(error, result) {
 
                 if(error === null) {
+                    let created = 1000*60*60*24*(req.query.days ? req.query.days : 1);
                     let prueba = result.response.video_list.filter((video) => {
-                        let created = 1000*60*60*24*(req.query.days ? req.query.days : 1);
-                        let videoCreated = video.date_created;
-                        return videoCreated > created;
+                        return true;
                     });
                     result.response.prueba = prueba;
                     result.response.days = created;
