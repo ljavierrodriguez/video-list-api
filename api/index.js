@@ -53,7 +53,7 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
                 if(error === null) {
                     let created = 1000*60*60*24*days;
                     let prueba = result.response.video_list.filter((video) => {
-                        return video.date_created > created;
+                        return video.date_created > parseInt(created);
                     });
                     result.response.prueba = prueba;
                     res.send(result);
