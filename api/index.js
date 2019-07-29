@@ -120,22 +120,26 @@ app.get('/playlists/:token/videos/delete', function (req, res) {
     if (preview) {
         res.send(datos);
     } else {
-        request({
-            url: "https://www.streamingvideoprovider.com/?l=api&a=svp_delete_video&token=" + token + "&video_ref=" + video_ref,
-            json: false
-        }, function (error, response, body) {
+        let respuesta = videos.map((video) => {
+            request({
+                url: "https://www.streamingvideoprovider.com/?l=api&a=svp_delete_video&token=" + token + "&video_ref=" + video,
+                json: false
+            }, function (error, response, body) {
 
-            if (!error && response.statusCode === 200) {
-                // Pintamos la respuesta JSON en navegador.
-                parser.parseString(body, function (error, result) {
-                    if (error === null) {
-                        res.send(result)
-                    } else {
-                        console.log(error);
-                    }
-                });
-            }
+                if (!error && response.statusCode === 200) {
+                    // Pintamos la respuesta JSON en navegador.
+                    parser.parseString(body, function (error, result) {
+                        if (error === null) {
+                            return { 'video': video, 'result': result }
+                        } else {
+                            return error;
+                        }
+                    });
+                }
+            });
         });
+
+        res.send(respuesta);
     }
 });
 
