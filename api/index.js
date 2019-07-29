@@ -48,7 +48,7 @@ app.get('/playlists/:token/:channel_ref', function (req, res) {
             // Pintamos la respuesta JSON en navegador.
             parser.parseString(body, function (error, result) {
                 if (error === null) {
-                    let videos = result.response.video_list[0].video.map((video) => {
+                    let videos = result.response.video_list[0].video.filter((video) => {
                         console.log(video);
                         let created = 1000 * 60 * 60 * 24;
                         let d1 = new Date(video.date_created * 1000);
