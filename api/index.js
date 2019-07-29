@@ -108,7 +108,7 @@ app.get('/playlists/:token/video/:video_ref/delete', function (req, res) {
 
 app.get('/playlists/:token/videos/delete', function (req, res) {
     let token = req.params.token;
-    let videos = explode(",", req.query.videos);
+    let videos = req.query.videos.split(",");
     let preview = req.query.preview;
 
     let datos = {
