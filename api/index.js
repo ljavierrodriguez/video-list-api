@@ -12,12 +12,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.get('/', function (req, res) {
-    fetch("https://video-list-api.ljavierrodriguez.now.sh/playlists/063083d4ac14a6ff7b4695aed0d25811/153131/delete?days=3")
-        .then(resp => resp.json())
-        .then( data => {
-            res.send(data);
-        })
-    //res.send("<h1>Hola Mundo</h1>");
+    res.send("<h1>Hola Mundo</h1>");
 });
 
 app.get('/playlists/:token', function (req, res) {
