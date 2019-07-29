@@ -60,7 +60,7 @@ app.get('/playlists/:token/:channel_ref', function (req, res) {
                         if(parseInt(days_created) >= parseInt(days)) return video;
                     });
 
-                    result.response.prueba = videos;
+                    result.response.todelete = videos;
                     result.response.days = (req.query.days ? req.query.days : 1);
                     res.send(result);
                 } else {
