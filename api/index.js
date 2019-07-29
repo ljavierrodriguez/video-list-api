@@ -117,7 +117,7 @@ app.get('/playlists/:token/videos/delete', function (req, res) {
         "videos": videos
     }
 
-    if (preview) {
+    if (preview === true) {
         res.send(datos);
     } else {
         let respuesta = videos.map((video) => {
