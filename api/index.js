@@ -63,7 +63,6 @@ app.get('/playlists/:token/:channel_ref', function(req, res) {
                     result.response.prueba = videos;
                     result.response.days = (req.query.days ? req.query.days : 1);
                     res.send(result);
-                    res.send(result);
                 }
                 else {
                     console.log(error);
