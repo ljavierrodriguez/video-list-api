@@ -21,6 +21,10 @@
       "dest": "/api/index.js"
     },
     {
+      "src": "/playlists/(.*)/videos/delete",
+      "dest": "/api/index.js"
+    },
+    {
       "src": "/playlists/(.*)/(.*)",
       "dest": "/api/index.js"
     },
