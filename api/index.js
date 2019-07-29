@@ -49,15 +49,15 @@ app.get('/playlists/:token/:channel_ref', function (req, res) {
             parser.parseString(body, function (error, result) {
                 if (error === null) {
                     let videos = result.response.video_list[0].video.map((video) => {
-                        /*console.log(vid);
+                        console.log(video);
                         let created = 1000 * 60 * 60 * 24;
-                        let d1 = new Date(86400000 * 1000);
+                        let d1 = new Date(video.date_created * 1000);
                         let d2 = new Date();
                         let total = d2.getTime() - d1.getTime();
                         let days_created = Math.floor(total / created);
                         let days = (req.query.days ? parseInt(req.query.days) : 1)
-                        return (parseInt(days_created) >= parseInt(days));*/
-                        return video;
+                        //return (parseInt(days_created) >= parseInt(days));
+                        if(parseInt(days_created) >= parseInt(days)) return video;
                     });
 
                     result.response.prueba = videos;
