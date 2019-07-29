@@ -106,4 +106,40 @@ app.get('/playlists/:token/video/:video_ref/delete', function (req, res) {
     }
 });
 
+app.get('/playlists/:token/:channel_ref/delete', function (req, res) {
+    let token = req.params.token;
+    let channel_ref = req.params.channel_ref
+
+    request({
+        url: "https://www.streamingvideoprovider.com/?l=api&a=svp_list_videos&token=" + token + "&channel_ref=" + channel_ref,
+        json: false
+    }, function (error, response, body) {
+
+        if (!error && response.statusCode === 200) {
+            // Pintamos la respuesta JSON en navegador.
+            parser.parseString(body, function (error, result) {
+                if (error === null) {
+                    let videos = result.response.video_list[0].video.filter((video) => {
+                        console.log(video);
+                        let created = 1000 * 60 * 60 * 24;
+                        let d1 = new Date(video.date_created * 1000);
+                        let d2 = new Date();
+                        let total = d2.getTime() - d1.getTime();
+                        let days_created = Math.floor(total / created);
+                        let days = (req.query.days ? parseInt(req.query.days) : 1)
+                        //return (parseInt(days_created) >= parseInt(days));
+                        if(parseInt(days_created) >= parseInt(days)) return video;
+                    });
+                    result = {};
+                    result.todelete = videos;
+                    result.days = (req.query.days ? req.query.days : 1);
+                    res.send(result);
+                } else {
+                    console.log(error);
+                }
+            });
+        }
+    })
+});
+
 module.exports = app;
