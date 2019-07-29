@@ -9,15 +9,7 @@
   ],
   "routes": [
     {
-      "src": "/",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/playlists/(.*)",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/playlists/(.*)/(.*)",
+      "src": "/playlists/(.*)/video/(.*)/delete/(.*)",
       "dest": "/api/index.js"
     },
     {
@@ -25,7 +17,15 @@
       "dest": "/api/index.js"
     },
     {
-      "src": "/playlists/(.*)/video/(.*)/delete/(.*)",
+      "src": "/playlists/(.*)/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/playlists/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/",
       "dest": "/api/index.js"
     }
   ]
